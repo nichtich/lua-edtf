@@ -1,0 +1,41 @@
+NAME
+
+    lua-edtf - experimental Lua module to parse extended date/time format
+
+BACKGROUND
+
+    The Library of Congress works on an Extended Date/Time Format (EDTF):
+      http://www.loc.gov/standards/datetime/
+
+    I play around with the Lua programming language and formal grammars.
+
+    This module defines a formal grammar to parse (currently a subset of) 
+    the proposed EDTF. The grammar is not written as context-free language
+    in Backus-Naur Form, but as Parsing Expression Grammar (PEG).
+
+REQUIREMENTS
+
+    You need a Lua interpreter and LPeg pattern matching library for Lua:
+      http://www.inf.puc-rio.br/~roberto/lpeg/
+
+    The Debian package 'liblua5.1-lpeg2' simplifies installation.
+
+USAGE
+
+    The script 'examples.lua' contains examples and test cases.
+
+STATUS
+   
+    This module is purely experimental, it only covers a small subset of
+    the proposed EDTF. I have no intention to finish the parser, but maybe
+    it is of use to someone. Feel free to extend and fork this project:
+      http://github.com/nichtich/lua-edtf
+
+AUTHOR
+
+    Jakob Voss <voss@gbv.de>
+
+LICENSE
+
+    Licensed under the GNU General Public License (GPL)
+
