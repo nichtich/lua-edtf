@@ -46,6 +46,8 @@ EDTF = P {
   -- '0' to '9'
   digit  = R"09",
 
+  century = Cg( V"digit" * V"digit", "century" ),
+
   -- '01' to '12'
   month  = Cg( ( ( P"1" * R"02" ) + ( P"0" * R"19" ) ), "month" ),
 
@@ -74,11 +76,17 @@ EDTF = P {
 
   year_season =  V"year" * P"-" * V"season",
 
-
   year_month =  V"year" * P"-" * V"month",
 
-  --EDTF = ( V("year_month") + V("year") ) * -1,
-  EDTF = Ct( V"year_month" + V"year_season" + V("year") + V("month") ) * -1,
+  -- year | year-month | year-season | month
+  basicdate = Ct( V"year_month" + V"year_season" + V"year" + V"century" ),
+
+  ws = P" "^0,
+  delim = V"ws" * P"," * V"ws",
+
+  list_of_basicdate = (P"{" * V"ws" * Ct( V"basicdate" * (V"delim" * V"basicdate")^0 ) * V"ws" * P"}"),
+
+  EDTF = (V"list_of_basicdate" + V"basicdate") * -1
 }
 
 
